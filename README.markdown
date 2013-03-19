@@ -2,10 +2,12 @@
 
 Cached version of property
 
+Written and used by the folks at Yola. Check out our [free website][1] builder today.
+
 ## Overview
 
 - cached_property - stores results of decorated functions in decorated object
-(_cached_properties attribute)
+(in _cached_properties attribute)
 - clear_cached_properties_for - deletes cached value(s)
 
 ## Usage
@@ -36,7 +38,5 @@ Install development requirements:
 Run the tests with:
 
     nosetests
-
-Written and used by the folks at Yola. Check out our [free website][1] builder today.
 
 [1]:https://www.yola.com/
