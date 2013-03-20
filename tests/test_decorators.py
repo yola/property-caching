@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.abspath(os.path.join(
     os.path.dirname(__file__), '../property_caching')))
 
 import unittest2
-from property_caching.decorators import cached_property, clear_cached_properties_for
+from property_caching.decorators import cached_property, clear_cached_property
 
 
 class TestClass(object):
@@ -24,31 +24,34 @@ class TestClass(object):
         return self.counter2
 
 
-class DecoratorsTestCase(unittest2.TestCase):
+class BaseTestCase(unittest2.TestCase):
     def setUp(self):
         self.test_obj = TestClass()
 
-    def test_property_caching(self):
+
+class DecoratorTestCase(BaseTestCase):
+    """A method decorated with @cached_property"""
+
+    def test_returns_the_calculated_value(self):
         self.assertEqual(self.test_obj.counter, 0)
-
-        self.assertEqual(self.test_obj.method, 1)
         self.assertEqual(self.test_obj.method, 1)
 
-    def test_clearing_cache_for_single_property(self):
+    def test_does_not_recalculate_the_value_on_subsequent_calls(self):
         self.assertEqual(self.test_obj.method, 1)
-        clear_cached_properties_for(self.test_obj, 'method')
+        self.assertEqual(self.test_obj.method, 1)
+
+
+class ClearCachedPropertyTestCase(BaseTestCase):
+    """clear_cached_property(object, method_name)"""
+
+    def test_clears_the_calculated_value(self):
+        self.assertEqual(self.test_obj.method, 1)
+        clear_cached_property(self.test_obj, 'method')
         self.assertEqual(self.test_obj.method, 2)
 
-    def test_clearing_cache_for_single_property_does_not_affect_others(self):
+    def test_does_not_affect_other_cached_properties_on_the_object(self):
         self.assertEqual(self.test_obj.method, 1)
         self.assertEqual(self.test_obj.method2, 1)
-        clear_cached_properties_for(self.test_obj, 'method')
+        clear_cached_property(self.test_obj, 'method')
         self.assertEqual(self.test_obj.method, 2)
         self.assertEqual(self.test_obj.method2, 1)
-
-    def test_clearing_cache_for_all_properties(self):
-        self.assertEqual(self.test_obj.method, 1)
-        self.assertEqual(self.test_obj.method2, 1)
-        clear_cached_properties_for(self.test_obj)
-        self.assertEqual(self.test_obj.method, 2)
-        self.assertEqual(self.test_obj.method2, 2)

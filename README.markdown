@@ -16,18 +16,13 @@ Written and used by the folks at Yola. Check out our [free website][1] builder t
     class Dummy:
         @cached_property
         def foo(self):
-            return 5
-
-        @cached_property
-        def bar(self):
-            return 42
+            return expensive_operation()
 
     d = Dummy()
     d.foo   # calculates result and stores it in d._cached_properties
     d.foo   # uses cached value
 
-    clear_cached_properties_for(d, 'foo')  # clears cache for property `foo`
-    clear_cached_properties_for(d)         # clears cache for all properties
+    clear_cached_property(d, 'foo')  # clears cache for property `foo`
 
 ## Testing
 

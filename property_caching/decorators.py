@@ -9,10 +9,7 @@ def cached_property(fn):
     return property(update_wrapper(cached_property, fn))
 
 
-def clear_cached_properties_for(obj, method_name=None):
-    if method_name:
-        cache = getattr(obj, '_cached_properties', {})
-        if method_name in cache:
-            del cache[method_name]
-    else:
-        obj._cached_properties = {}
+def clear_cached_property(obj, method_name):
+    cache = getattr(obj, '_cached_properties', {})
+    if method_name in cache:
+        del cache[method_name]
