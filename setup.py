@@ -6,5 +6,4 @@ setup(
     description='Property caching',
     url='https://github.com/yola/property-caching',
     packages=['property_caching'],
-    test_suite='nose.collector',
 )
