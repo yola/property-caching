@@ -8,10 +8,10 @@ Written and used by the folks at Yola. Check out our [free website][1] builder t
 
 - cached_property - stores results of decorated functions in decorated object
 (in _cached_properties attribute)
-- clear_cached_properties_for - deletes cached value(s)
+- clear_cached_property - deletes cached value
 
 ## Usage
-    from property_caching.decorators import (cached_property, clear_cached_properties_for)
+    from property_caching.decorators import (cached_property, clear_cached_property)
 
     class Dummy:
         @cached_property
