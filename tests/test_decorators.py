@@ -1,9 +1,3 @@
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(
-    os.path.dirname(__file__), '../property_caching')))
-
 import unittest2
 from property_caching.decorators import cached_property, clear_cached_property
 
