@@ -22,7 +22,7 @@ Written and used by the folks at Yola. Check out our [free website][1] builder t
     class Dummy:
         @cached_property
         def foo(self):
-            return service.expensive_operation()
+            return self.service.expensive_operation()
 
         @cached_in_class_property
         def service(self):
@@ -33,7 +33,7 @@ Written and used by the folks at Yola. Check out our [free website][1] builder t
     d.foo   # uses cached value
 
     clear_property_cache(d, 'foo')   # clears cache for property `foo`
-    set_property_cache(d, 'foo', 42) # implicitly set cache for property `foo`
+    set_property_cache(d, 'foo', 42) # explicitly set cache for property `foo`
 
     d2 = Dummy()
     d2.foo  # re-calculates value of `foo` but uses cached service
