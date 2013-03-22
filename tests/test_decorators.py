@@ -1,5 +1,5 @@
 import unittest2
-from property_caching import (cached_property, cached_in_class_property,
+from property_caching import (cached_property, class_cached_property,
                               clear_property_cache, set_property_cache)
 
 
@@ -20,7 +20,7 @@ class TestClass(object):
         self.counter2 += 1
         return self.counter2
 
-    @cached_in_class_property
+    @class_cached_property
     def method3(self):
         self.counter3 += 1
         return self.counter3
@@ -44,8 +44,8 @@ class CachedPropertyTestCase(BaseTestCase):
         self.assertEqual(self.test_obj.counter, 1)
 
 
-class CachedInClassPropertyTestCase(BaseTestCase):
-    """A method decorated with @cached_in_class_property"""
+class ClassCachedPropertyTestCase(BaseTestCase):
+    """A method decorated with @class_cached_property"""
 
     def test_does_not_recalculate_the_value_on_subsequent_calls(self):
         self.assertEqual(self.test_obj.method3, 1)

@@ -1,14 +1,14 @@
 from functools import update_wrapper
 
 
-_CLASS_CACHE_ATTR_NAME = '_cached_in_class_properties'
+_CLASS_CACHE_ATTR_NAME = '_class_cached_properties'
 _OBJ_CACHE_ATTR_NAME = '_cached_properties'
 
 
-def cached_in_class_property(fn):
-    def _cached_in_class_property(self):
+def class_cached_property(fn):
+    def _class_cached_property(self):
         return _get_property_value(fn, self.__class__, _CLASS_CACHE_ATTR_NAME)
-    return property(update_wrapper(_cached_in_class_property, fn))
+    return property(update_wrapper(_class_cached_property, fn))
 
 
 def cached_property(fn):
