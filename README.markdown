@@ -15,29 +15,29 @@ Written and used by the folks at Yola to support our [free website builder][1].
 
 ## Usage
 ```python
-    from property_caching.decorators import (cached_property,
-                                             class_cached_property,
-                                             clear_property_cache,
-                                             set_property_cache)
+from property_caching.decorators import (cached_property,
+                                         class_cached_property,
+                                         clear_property_cache,
+                                         set_property_cache)
 
-    class Dummy:
-        @cached_property
-        def foo(self):
-            return self.service.expensive_operation()
+class Dummy:
+    @cached_property
+    def foo(self):
+        return self.service.expensive_operation()
 
-        @class_cached_property
-        def service(self):
-            return expensive_service_initialization()
+    @class_cached_property
+    def service(self):
+        return expensive_service_initialization()
 
-    d = Dummy()
-    d.foo   # calculates result and stores it in d._cached_properties
-    d.foo   # uses cached value
+d = Dummy()
+d.foo   # calculates result and stores it in d._cached_properties
+d.foo   # uses cached value
 
-    clear_property_cache(d, 'foo')   # clears cache for property `foo`
-    set_property_cache(d, 'foo', 42) # explicitly set cache for property `foo`
+clear_property_cache(d, 'foo')   # clears cache for property `foo`
+set_property_cache(d, 'foo', 42) # explicitly set cache for property `foo`
 
-    d2 = Dummy()
-    d2.foo  # re-calculates value of `foo` but uses cached service
+d2 = Dummy()
+d2.foo  # re-calculates value of `foo` but uses cached service
 ```
 
 ## Testing
