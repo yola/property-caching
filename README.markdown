@@ -14,6 +14,7 @@ Written and used by the folks at Yola to support our [free website builder][1].
 - set_property_cache - explicitly sets property cache (works for object cached properties only)
 
 ## Usage
+```python
     from property_caching.decorators import (cached_property,
                                              class_cached_property,
                                              clear_property_cache,
@@ -37,7 +38,7 @@ Written and used by the folks at Yola to support our [free website builder][1].
 
     d2 = Dummy()
     d2.foo  # re-calculates value of `foo` but uses cached service
-
+```
 
 ## Testing
 
