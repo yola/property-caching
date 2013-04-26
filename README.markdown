@@ -2,7 +2,7 @@
 
 Cached version of property
 
-Written and used by the folks at Yola. Check out our [free website][1] builder today.
+Written and used by the folks at Yola to support our [free website builder][1].
 
 ## Overview
 
