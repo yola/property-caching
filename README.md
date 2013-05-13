@@ -6,12 +6,13 @@ Written and used by the folks at Yola to support our [free website builder][1].
 
 ## Overview
 
-- cached_property - stores results of decorated methods in decorated object
-(in _cached_properties attribute)
-- class_cached_property - stores results of decorated methods in the class of decorated object
-(in _class_cached_properties attribute). All instances will share cached value.
-- clear_property_cache - deletes cached value (works for object cached properties only)
-- set_property_cache - explicitly sets property cache (works for object cached properties only)
+- `cached_property` - stores results of decorated methods in decorated object
+(in `_cached_properties` attribute)
+- `class_cached_property` - stores results of decorated methods in the class of decorated object
+(in `_class_cached_properties` attribute). All instances will share cached value.
+- `clear_property_cache` - deletes cached value (works for object cached properties only)
+- `set_property_cache` - explicitly sets property cache (works for object cached properties only)
+- `is_property_cached` - allows to check whether property was cached or not (works for object cached properties only)
 
 ## Usage
 ```python
