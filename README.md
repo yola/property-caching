@@ -12,6 +12,7 @@ Written and used by the folks at Yola to support our [free website builder][1].
 (in _class_cached_properties attribute). All instances will share cached value.
 - clear_property_cache - deletes cached value (works for object cached properties only)
 - set_property_cache - explicitly sets property cache (works for object cached properties only)
+- is_property_cached - allows to check whether property was cached or not
 
 ## Usage
 ```python
