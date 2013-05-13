@@ -18,19 +18,28 @@ def cached_property(fn):
 
 
 def set_property_cache(obj, name, value):
-    cache = getattr(obj, _OBJ_CACHE_ATTR_NAME, {})
+    cache = _get_cache(obj)
     cache[name] = value
     setattr(obj, _OBJ_CACHE_ATTR_NAME, cache)
 
 
 def clear_property_cache(obj, name):
-    cache = getattr(obj, _OBJ_CACHE_ATTR_NAME, {})
+    cache = _get_cache(obj)
     if name in cache:
         del cache[name]
 
 
+def is_property_cached(obj, name):
+    cache = _get_cache(obj)
+    return name in cache
+
+
+def _get_cache(obj, cache_attr_name=_OBJ_CACHE_ATTR_NAME):
+    return getattr(obj, cache_attr_name, {})
+
+
 def _get_property_value(fn, obj, cache_attr_name):
-    cache = getattr(obj, cache_attr_name, {})
+    cache = _get_cache(obj, cache_attr_name)
     if not fn.__name__ in cache:
         cache[fn.__name__] = fn(obj)
         setattr(obj, cache_attr_name, cache)

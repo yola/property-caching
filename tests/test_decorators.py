@@ -1,6 +1,5 @@
 import unittest2
-from property_caching import (cached_property, class_cached_property,
-                              clear_property_cache, set_property_cache)
+from property_caching import *
 
 
 class TestClass(object):
@@ -83,3 +82,14 @@ class SetPropertyCacheTestCase(BaseTestCase):
         self.assertEqual(self.test_obj.method, 1)
         set_property_cache(self.test_obj, 'method', 10)
         self.assertEqual(self.test_obj.method, 10)
+
+
+class IsPropertyCachedTestCase(BaseTestCase):
+    """is_property_cached(object, property_name)"""
+
+    def test_returns_true_if_property_is_cached(self):
+        self.assertEqual(self.test_obj.method, 1)
+        self.assertTrue(is_property_cached(self.test_obj, 'method'))
+
+    def test_returns_false_if_property_is_not_cached(self):
+        self.assertFalse(is_property_cached(self.test_obj, 'method'))
