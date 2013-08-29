@@ -6,6 +6,7 @@ setup(
     description='Property caching',
     author='Yola',
     author_email='engineers@yola.com',
+    license='MIT (Expat)',
     url='https://github.com/yola/property-caching',
     packages=['property_caching'],
 )

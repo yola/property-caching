@@ -1,5 +1,7 @@
 # Property caching
 
+[![Build Status](https://travis-ci.org/yola/property-caching.png)](https://travis-ci.org/yola/property-caching)
+
 Cached version of property
 
 Written and used by the folks at Yola to support our [free website builder][1].
