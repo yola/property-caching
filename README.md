@@ -18,10 +18,10 @@ Written and used by the folks at Yola to support our [free website builder][1].
 
 ## Usage
 ```python
-from property_caching.decorators import (cached_property,
-                                         class_cached_property,
-                                         clear_property_cache,
-                                         set_property_cache)
+from property_caching import (cached_property,
+                              class_cached_property,
+                              clear_property_cache,
+                              set_property_cache)
 
 class Dummy:
     @cached_property
