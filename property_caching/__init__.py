@@ -41,6 +41,9 @@ def _get_cache(obj, cache_attr_name=_OBJ_CACHE_ATTR_NAME):
 def _get_property_value(fn, obj, cache_attr_name):
     cache = _get_cache(obj, cache_attr_name)
     if not fn.__name__ in cache:
-        cache[fn.__name__] = fn(obj)
+        result = fn(obj)
+        # re-read cache since it might be already populated by nested functions
+        cache = _get_cache(obj, cache_attr_name)
+        cache[fn.__name__] = result
         setattr(obj, cache_attr_name, cache)
     return cache[fn.__name__]

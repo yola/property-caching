@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='property-caching',
-    version='1.0.0',
+    version='1.0.1',
     description='Property caching',
     author='Yola',
     author_email='engineers@yola.com',
