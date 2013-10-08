@@ -24,6 +24,10 @@ class TestClass(object):
         self.counter3 += 1
         return self.counter3
 
+    @cached_property
+    def method4(self):
+        return self.method2
+
 
 class BaseTestCase(unittest2.TestCase):
     def setUp(self):
@@ -41,6 +45,12 @@ class CachedPropertyTestCase(BaseTestCase):
         self.assertEqual(self.test_obj.method, 1)
         self.assertEqual(self.test_obj.method, 1)
         self.assertEqual(self.test_obj.counter, 1)
+
+    def test_caches_all_intermediate_results(self):
+        self.assertEqual(self.test_obj.method4, 1)
+        self.assertEqual(self.test_obj.counter2, 1)
+        self.assertEqual(self.test_obj.method2, 1)
+        self.assertEqual(self.test_obj.counter2, 1)
 
 
 class ClassCachedPropertyTestCase(BaseTestCase):
