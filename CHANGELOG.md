@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.3
+* Converted README from markdown to reStructuredText so it works on PyPi.
+
 ## 1.0.2
 * Adds Python 3 support
 
