@@ -1,7 +1,7 @@
 Property caching
 ================
-.. |Build Status| image:: https://travis-ci.org/yola/property-caching.png
-   :target: https://travis-ci.org/yola/property-caching
+.. image:: https://travis-ci.org/yola/property-caching.svg?branch=fix/md-to-rst
+    :target: https://travis-ci.org/yola/property-caching
 
 
 Cached version of property
@@ -72,5 +72,5 @@ Run the tests with:
 
 .. _free website builder: https://www.yola.com/
 
-.. |Build Status| image:: https://travis-ci.org/yola/property-caching.png
-   :target: https://travis-ci.org/yola/property-caching
+.. image:: https://travis-ci.org/yola/property-caching.svg?branch=fix/md-to-rst
+    :target: https://travis-ci.org/yola/property-caching
