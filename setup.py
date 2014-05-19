@@ -9,5 +9,11 @@ setup(
     license='MIT (Expat)',
     url='https://github.com/yola/property-caching',
     packages=['property_caching'],
-    test_suite='tests'
+    test_suite='tests',
+    classifiers=[
+        'Programming Language :: Python :: 2',
+        'Programming Language :: Python :: 3',
+        'Development Status :: 5 - Production/Stable',
+        'License :: OSI Approved :: MIT License',
+    ]
 )
