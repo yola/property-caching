@@ -9,4 +9,5 @@ setup(
     license='MIT (Expat)',
     url='https://github.com/yola/property-caching',
     packages=['property_caching'],
+    test_suite='tests'
 )
