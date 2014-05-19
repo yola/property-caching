@@ -1,4 +1,4 @@
-import unittest2
+import unittest
 from property_caching import *
 
 
@@ -29,7 +29,7 @@ class TestClass(object):
         return self.method2
 
 
-class BaseTestCase(unittest2.TestCase):
+class BaseTestCase(unittest.TestCase):
     def setUp(self):
         self.test_obj = TestClass()
 
