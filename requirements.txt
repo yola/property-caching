@@ -1,3 +1,2 @@
 nose < 2.0.0
 pep8 < 2.0.0
-pinocchio < 1.0.0
