@@ -68,7 +68,7 @@ Run the tests with:
 
 ::
 
-    nosetests
+    python setup.py test
 
 .. _free website builder: https://www.yola.com/
 
