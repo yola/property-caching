@@ -45,14 +45,21 @@ def _get_cache(obj, cache_attr_name=_OBJ_CACHE_ATTR_NAME):
     return getattr(obj, cache_attr_name, {})
 
 
-def _get_property_value(fn, obj, cache_attr_name, cache_false_results=True):
-    result = None
+def _update_cache(obj, cache_attr_name, cache_key, result):
     cache = _get_cache(obj, cache_attr_name)
-    if fn.__name__ not in cache:
-        result = fn(obj)
-        # re-read cache since it might be already populated by nested functions
-        cache = _get_cache(obj, cache_attr_name)
-        if result or cache_false_results:
-            cache[fn.__name__] = result
-        setattr(obj, cache_attr_name, cache)
-    return cache.get(fn.__name__, result)
+    cache[cache_key] = result
+    setattr(obj, cache_attr_name, cache)
+
+
+def _get_property_value(fn, obj, cache_attr_name, cache_false_results=True):
+    cache = _get_cache(obj, cache_attr_name)
+    cache_key = fn.__name__
+
+    if cache_key in cache:
+        return cache[fn.__name__]
+
+    result = fn(obj)
+    if result or cache_false_results:
+        _update_cache(obj, cache_attr_name, cache_key, result)
+
+    return result
