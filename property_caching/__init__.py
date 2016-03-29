@@ -56,7 +56,7 @@ def _get_property_value(fn, obj, cache_attr_name, cache_false_results=True):
     cache_key = fn.__name__
 
     if cache_key in cache:
-        return cache[fn.__name__]
+        return cache[cache_key]
 
     result = fn(obj)
     if result or cache_false_results:
