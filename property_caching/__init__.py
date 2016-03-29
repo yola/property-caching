@@ -17,6 +17,13 @@ def cached_property(fn):
     return property(update_wrapper(_cached_property, fn))
 
 
+def truthy_cached_property(fn):
+    def _truthy_cached_property(self):
+        return _get_property_value(
+            fn, self, _OBJ_CACHE_ATTR_NAME, only_cache_true_vals=True)
+    return property(update_wrapper(_truthy_cached_property, fn))
+
+
 def set_property_cache(obj, name, value):
     cache = _get_cache(obj)
     cache[name] = value
@@ -38,12 +45,14 @@ def _get_cache(obj, cache_attr_name=_OBJ_CACHE_ATTR_NAME):
     return getattr(obj, cache_attr_name, {})
 
 
-def _get_property_value(fn, obj, cache_attr_name):
+def _get_property_value(fn, obj, cache_attr_name, only_cache_true_vals=False):
+    result = None
     cache = _get_cache(obj, cache_attr_name)
     if fn.__name__ not in cache:
         result = fn(obj)
         # re-read cache since it might be already populated by nested functions
         cache = _get_cache(obj, cache_attr_name)
-        cache[fn.__name__] = result
+        if result or not only_cache_true_vals:
+            cache[fn.__name__] = result
         setattr(obj, cache_attr_name, cache)
-    return cache[fn.__name__]
+    return cache.get(fn.__name__, result)

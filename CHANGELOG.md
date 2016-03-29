@@ -1,5 +1,8 @@
 # Changelog
 
+## DEV
+* Add `@truthy_cached_property`
+
 ## 1.0.3
 * Converted README from markdown to reStructuredText so it works on PyPi.
 
