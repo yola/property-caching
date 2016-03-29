@@ -1,6 +1,6 @@
 # Changelog
 
-## DEV
+## 1.1.0
 * Add `@truthy_cached_property`
 
 ## 1.0.3
