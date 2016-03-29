@@ -1,5 +1,7 @@
 import unittest
-from property_caching import *
+from property_caching import (
+    cached_property, class_cached_property, clear_property_cache,
+    is_property_cached, set_property_cache, truthy_cached_property)
 
 
 class TestClass(object):

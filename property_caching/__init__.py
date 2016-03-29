@@ -40,7 +40,7 @@ def _get_cache(obj, cache_attr_name=_OBJ_CACHE_ATTR_NAME):
 
 def _get_property_value(fn, obj, cache_attr_name):
     cache = _get_cache(obj, cache_attr_name)
-    if not fn.__name__ in cache:
+    if fn.__name__ not in cache:
         result = fn(obj)
         # re-read cache since it might be already populated by nested functions
         cache = _get_cache(obj, cache_attr_name)
