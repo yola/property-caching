@@ -34,12 +34,18 @@ Usage
     from property_caching import (cached_property,
                                   class_cached_property,
                                   clear_property_cache,
-                                  set_property_cache)
+                                  set_property_cache,
+                                  truthy_cached_property)
 
     class Dummy:
         @cached_property
         def foo(self):
             return self.service.expensive_operation()
+
+        @truthy_cached_property
+        def bar(self):
+            # this value will only be cached if it doesn't evaluate to false:
+            return self.service.expensive_operation2()
 
         @class_cached_property
         def service(self):

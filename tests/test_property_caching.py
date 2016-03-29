@@ -1,5 +1,7 @@
 import unittest
-from property_caching import *
+from property_caching import (
+    cached_property, class_cached_property, clear_property_cache,
+    is_property_cached, set_property_cache, truthy_cached_property)
 
 
 class TestClass(object):
@@ -8,6 +10,7 @@ class TestClass(object):
     def __init__(self):
         self.counter = 0
         self.counter2 = 0
+        self.attribute = None
 
     @cached_property
     def method(self):
@@ -27,6 +30,14 @@ class TestClass(object):
     @cached_property
     def method4(self):
         return self.method2
+
+    @cached_property
+    def cached_attribute(self):
+        return self.attribute
+
+    @truthy_cached_property
+    def truthy_cached_attribute(self):
+        return self.attribute
 
 
 class BaseTestCase(unittest.TestCase):
@@ -52,6 +63,16 @@ class CachedPropertyTestCase(BaseTestCase):
         self.assertEqual(self.test_obj.method2, 1)
         self.assertEqual(self.test_obj.counter2, 1)
 
+    def test_caches_falsey_values(self):
+        for falsey_value in (False, None, '', 0, [], {}):
+            test_obj = TestClass()
+
+            test_obj.attribute = falsey_value
+            self.assertEqual(test_obj.cached_attribute, falsey_value)
+
+            test_obj.attribute = 99
+            self.assertEqual(test_obj.cached_attribute, falsey_value)
+
 
 class ClassCachedPropertyTestCase(BaseTestCase):
     """A method decorated with @class_cached_property"""
@@ -67,6 +88,23 @@ class ClassCachedPropertyTestCase(BaseTestCase):
         obj2 = TestClass()
         self.assertEqual(obj2.method3, 1)
         self.assertEqual(TestClass.counter3, 1)
+
+
+class TruthyCachedPropertyTestCase(BaseTestCase):
+    """A method decorated with @truthy_cached_property"""
+
+    def test_only_caches_truthy_values(self):
+        for falsey_value in (False, None, '', 0, [], {}):
+            test_obj = TestClass()
+
+            test_obj.attribute = falsey_value
+            self.assertEqual(test_obj.truthy_cached_attribute, falsey_value)
+
+            test_obj.attribute = 99
+            self.assertEqual(test_obj.truthy_cached_attribute, 99)
+
+            test_obj.attribute = 123
+            self.assertEqual(test_obj.truthy_cached_attribute, 99)
 
 
 class ClearPropertyCacheTestCase(BaseTestCase):
